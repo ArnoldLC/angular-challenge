@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { agencies } from '../agencias'
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +9,6 @@ import { agencies } from '../agencias'
 
 export class AppComponent {
   title = 'angular-challenge';
-  // agencies = agencies
   
   public constructor(private titleService: Title) { 
     this.setTitle('Angular challenge')

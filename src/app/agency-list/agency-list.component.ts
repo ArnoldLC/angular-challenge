@@ -26,9 +26,9 @@ export class AgencyListComponent implements OnInit {
   
   fetchAgencies() {
     if ( localStorage.getItem('agencies') ) {
-      let agencies = localStorage.getItem('agencies')
-      this.agencies = JSON.parse(agencies!)
-      console.log('Por localstorage!')
+      let agencies = this.agencyService.getAgenciesFromLocalStorage()
+      this.agencies = agencies
+      console.log('-- RECIBIENDO DATOS DEL SERVICIO AGENCIA DESDE LOCALSTORAGE --')
     } else {
       this.agencyService.getAgencies()
         .subscribe((data: Array<Agency>) => {
