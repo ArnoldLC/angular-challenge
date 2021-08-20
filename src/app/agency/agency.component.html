@@ -1,15 +1,15 @@
 <div class="card p-2 mb-2">
   <div class="d-flex">
-    <div class="">
+    <div class="agency-image">
       <img src="http://lorempixel.com/60/60" alt="" class="img-thumbnail">
     </div>
-    <div class="mx-2">
-      <p class="mb-0">{{ agency.agencia }}</p>
-      <p class="mb-0">{{ agency.provincia }}</p>
-      <p class="mb-0">{{ agency.direccion }}</p>
+    <div class="mx-2 agency-description text-truncate">
+      <p class="mb-0 agency-description__nombre">{{ agency.agencia }}</p>
+      <p class="mb-0 agency-description__provincia">{{ agency.provincia }}</p>
+      <p class="mb-0 agency-description__direccion text-truncate">{{ agency.direccion }}</p>
     </div>
-    <div class="mx-2 align-self-end">
-      <a [routerLink]="[agency.id]" [state]="{ agency }">Detalle de agencia</a>
+    <div class="mx-2 align-self-end agency-call">
+      <a [routerLink]="[agency.id]" [state]="{ agency }" class="text-sm">Ver Detalle</a>
     </div>
   </div>
 </div>

@@ -1,0 +1,19 @@
+.agency-image {
+  width: 4rem;
+  flex-shrink: 0;
+}
+
+.agency-description {
+  flex-grow: 1;
+
+  &__direccion {
+    font-size: 0.725rem;
+    text-overflow: ellipsis;
+  }
+}
+
+.agency-call {
+  width: 60px;
+  flex-shrink: 0;
+  font-size: 0.725rem;
+}

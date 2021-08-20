@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -26,8 +27,10 @@ export class AgencyDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private agencyService: AgencyService
+    private agencyService: AgencyService,
+    private titleService: Title
   ) {
+    this.titleService.setTitle(`Detalle de Agencia ${this.route.snapshot.paramMap.get('id')}`)
    }
   
   ngOnInit(): void {

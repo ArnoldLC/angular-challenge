@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { AgencyService, Agency } from '../agency/agency.service'
 
 @Component({
@@ -9,7 +10,9 @@ import { AgencyService, Agency } from '../agency/agency.service'
 export class AgencyListComponent implements OnInit {
 
   
-  constructor(private agencyService: AgencyService) { }
+  constructor(private agencyService: AgencyService, private titleService: Title) {
+    this.titleService.setTitle('Lista de agencias')
+   }
   
   ngOnInit(): void {
     setTimeout(() => {
