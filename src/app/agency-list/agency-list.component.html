@@ -1,0 +1,13 @@
+<div class="loading-wrapper" *ngIf="loading">
+  <div class="loading-image">
+    <img src="/assets/bcp-logo.png" alt="Banco de Crédito del Perú" class="img-fluid">
+  </div>
+</div>
+
+<div class="container" *ngIf="!loading">
+  <div class="row" *ngFor="let agency of agencies">
+    <div class="col">
+      <app-agency [agency]="agency"></app-agency>
+    </div>
+  </div>
+</div>
