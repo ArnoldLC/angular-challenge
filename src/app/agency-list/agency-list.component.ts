@@ -22,14 +22,19 @@ export class AgencyListComponent implements OnInit {
   loading: Boolean = true
   
   fetchAgencies() {
-    if ( localStorage.getItem('agencias') ) {
+    if ( localStorage.getItem('agencies') ) {
+      let agencies = localStorage.getItem('agencies')
+      this.agencies = JSON.parse(agencies!)
+      console.log('Por localstorage!')
     } else {
       this.agencyService.getAgencies()
         .subscribe((data: Array<Agency>) => {
-          this.agencies =  data.map((item, index) => {
-            item.id = index + 1
-            return item
-          })
+          // this.agencies =  data.map((item, index) => {
+          //   item.id = index + 1
+          //   return item
+          // })
+          this.agencies = data
+          localStorage.setItem('agencies', JSON.stringify(this.agencies))
         })
     }
   }

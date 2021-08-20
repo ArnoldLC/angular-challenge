@@ -13,6 +13,7 @@ import { Agency, AgencyService } from '../agency/agency.service';
 export class AgencyDetailComponent implements OnInit {
 
   agency = new FormGroup({
+    id: new FormControl(this.route.snapshot.paramMap.get('id')),
     agencia: new FormControl(''),
     distrito: new FormControl(''),
     provincia: new FormControl(''),
@@ -30,34 +31,26 @@ export class AgencyDetailComponent implements OnInit {
    }
   
   ngOnInit(): void {
-    console.log(this.agencyService.getAgency(1))
-    this.agencyService.getAgencies()
-      .subscribe((data: Array<Agency>) => {
-        let agency = data.map((item, index) => {
-          item.id = index + 1
-          return item
-        }).find(agency => agency.id === Number(this.route.snapshot.paramMap.get('id')))!
-        this.agencyDetail = agency
-        this.agency.patchValue(agency)
-      })
-    // this.agency.patchValue({
-    //   agencia: this.agencyDetail.agencia,
-    //   distrito: this.agencyDetail?.distrito,
-    //   provincia: this.agencyDetail?.provincia,
-    //   departamento: this.agencyDetail?.departamento,
-    //   direccion: this.agencyDetail?.direccion
-    // })
-  }
-
-  updateName() {
-    this.agency.patchValue({
-      agencia: 'Las flores',
-      distrito: 'San miguel'
-    })
+    if ( localStorage.getItem('agencies') ) {
+      let agency = this.agencyService.getAgencyFromLocalStorage(Number(this.route.snapshot.paramMap.get('id')))
+      this.agencyDetail = agency!
+      this.agency.patchValue(this.agencyDetail)
+      console.log('-- RECIBIENDO DATA DE AGENCIA POR LOCALSTORAGE --')
+    } else {
+      let agency = this.agencyService.getAgency(Number(this.route.snapshot.paramMap.get('id')))
+        agency
+          .subscribe((data) => {
+          this.agencyDetail = data[0]
+          this.agency.patchValue(this.agencyDetail)
+        })
+        console.log('-- RECIBIENDO DATA DE AGENCIA DESDE EL JSON --')
+    }
   }
 
   onSubmit() {
-    console.log(this.agency.value)
+    console.log('-- DATA DE AGENCIA ENVIADA AL SERVICE AGENCY --')
+    this.agencyService.putAgency(Number(this.route.snapshot.paramMap.get('id')), this.agency.value)
+    this.router.navigateByUrl('/agency')
   }
 
 }
