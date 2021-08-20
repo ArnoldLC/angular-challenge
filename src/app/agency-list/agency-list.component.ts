@@ -15,10 +15,10 @@ export class AgencyListComponent implements OnInit {
    }
   
   ngOnInit(): void {
-    setTimeout(() => {
+    // setTimeout(() => {
       this.fetchAgencies()
-      this.loading = false
-    }, 2000)
+    //   this.loading = false
+    // }, 2000)
   }
 
   agencies: Array<Agency> | undefined

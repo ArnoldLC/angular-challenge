@@ -8,6 +8,18 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+  <div class="loading-wrapper" id="loading-wrapper">
+    <div class="loading-image">
+      <img src="/assets/bcp-logo.png" alt="Banco de Crédito del Perú" class="img-fluid">
+    </div>
+  </div>
+  <app-root>
+  </app-root>
 </body>
 </html>
+<script>
+  let loading = document.getElementById('loading-wrapper')
+  setTimeout(() => {
+      loading.style.display = "none"
+    }, 2000)
+</script>
